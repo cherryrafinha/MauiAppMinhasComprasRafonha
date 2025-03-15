@@ -4,7 +4,7 @@ namespace MauiAppMinhasComprasRafonha
 {
     public partial class App : Application
     {
-        static SQLiteDatabaseHelper _db;
+        static SQLiteDatabaseHelper _db; // tornando o banco de dados do sqlite disponivel
 
         public static SQLiteDatabaseHelper Db
         {
@@ -12,7 +12,7 @@ namespace MauiAppMinhasComprasRafonha
             {
                 if (_db == null)
                 {
-                    string path = Path.Combine(
+                    string path = Path.Combine( // o caminho até o banco de dados b3
                         Environment.GetFolderPath(
                             Environment.SpecialFolder.LocalApplicationData),
                         "banco_sqlite_compras.db3");

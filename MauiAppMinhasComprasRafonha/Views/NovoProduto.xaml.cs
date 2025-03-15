@@ -9,7 +9,7 @@ public partial class NovoProduto : ContentPage
         InitializeComponent();
     }
 
-    private async void ToolbarItem_Clicked(object sender, EventArgs e)
+    private async void ToolbarItem_Clicked(object sender, EventArgs e) //quando clicado ira acontecer as seguintes linhas de codigo
     {
         try
         {
@@ -26,7 +26,7 @@ public partial class NovoProduto : ContentPage
         }
         catch (Exception ex)
         {
-            await DisplayAlert("Ops", ex.Message, "OK");
+            await DisplayAlert("Ops", ex.Message, "OK"); //await seria sendo aguardado
         }
     }
 }

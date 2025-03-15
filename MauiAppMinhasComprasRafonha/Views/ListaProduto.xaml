@@ -4,9 +4,9 @@
              x:Class="MauiAppMinhasComprasRafonha.Views.ListaProduto"
              Title="Minhas Compras">
 
-    <ContentPage.ToolbarItems>
+    <ContentPage.ToolbarItems>  
         <ToolbarItem Text="Somar" />
-        <ToolbarItem Text="Adicionar" Clicked="ToolbarItem_Clicked" />
+        <ToolbarItem Text="Adicionar" Clicked="ToolbarItem_Clicked" /> 
     </ContentPage.ToolbarItems>
     
     <VerticalStackLayout>
