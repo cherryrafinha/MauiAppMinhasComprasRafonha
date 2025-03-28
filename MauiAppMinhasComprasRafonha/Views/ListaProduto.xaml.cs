@@ -50,6 +50,7 @@ public partial class ListaProduto : ContentPage
             lista.Clear();
 
             List<Produto> tmp = await App.Db.Search(q);
+            lst_produtos.IsRefreshing = true;
 
             tmp.ForEach(i => lista.Add(i));
         }
@@ -57,7 +58,12 @@ public partial class ListaProduto : ContentPage
         {
             await DisplayAlert("Ops", ex.Message, "OK"); // ele quer ser await por ser assincrono, diferente do outro, ele espera kkk
         }
+        finally
+        {
+            lst_produtos.IsRefreshing = false;
+        }
     }
+
 
 
     private void ToolbarItem_Clicked_1(object sender, EventArgs e)
@@ -102,6 +108,26 @@ public partial class ListaProduto : ContentPage
         catch (Exception ex)
         {
             DisplayAlert("Ops", ex.Message, "OK");
+        }
+    }
+    private async void lst_produtos_Refreshing(object sender, EventArgs e)
+    {
+        try
+        {
+            lista.Clear();
+
+            List<Produto> tmp = await App.Db.GetAll();
+
+            tmp.ForEach(i => lista.Add(i));
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Ops", ex.Message, "OK");
+
+        }
+        finally
+        {
+            lst_produtos.IsRefreshing = false;
         }
     }
 }
