@@ -70,9 +70,18 @@ public partial class ListaProduto : ContentPage
     {
         double soma = lista.Sum(i => i.Total);
 
-        string msg = $"O total é {soma:C}";
+        var relatorio = lista
+       .GroupBy(p => p.Categoria)
+       .ToDictionary(g => g.Key, g => g.Sum(p => p.Preco * p.Quantidade));
 
-        DisplayAlert("Total dos Produtos", msg, "OK");
+        // Formatar a mensagem
+        string msg = $"Total Geral: {soma:C}\n\nTotal por Categoria:\n";
+        foreach (var categoria in relatorio)
+        {
+            msg += $"{categoria.Key}: {categoria.Value:C}\n";
+        }
+
+        DisplayAlert("Total dos Produtos e por Categoria", msg, "OK");
     }
 
     private async void MenuItem_Clicked(object sender, EventArgs e)
@@ -130,4 +139,7 @@ public partial class ListaProduto : ContentPage
             lst_produtos.IsRefreshing = false;
         }
     }
+
+
+
 }
